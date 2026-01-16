@@ -1,0 +1,42 @@
+.contactListLayout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+    .contactListLayout a {
+        text-decoration: none;
+        cursor: pointer;
+        color: black;
+    }
+
+        .contactListLayout a:hover {
+            background-color: aliceblue;
+        }
+
+.contactLayout {
+    display: flex;
+    align-items: center;
+    width: 340px;
+    gap: 6px;
+    font-size: 1.2em;
+    color: black;
+}
+
+.contactAvatarSmall {
+    border:0.5px solid lightgray;
+    border-radius: 60px;
+    background-size: cover;
+    background-position: center;
+    width: 60px;
+    aspect-ratio: 1/1;
+}
+
+.contactAvatarBig {
+    border: 0.5px solid lightgray;
+    border-radius: 200px;
+    background-size: cover;
+    background-position: center;
+    max-width: 360px;
+    aspect-ratio: 1/1;
+}

@@ -1,0 +1,58 @@
+﻿:root {
+    --gap: 5px;
+    --trans-speed: 0.5s;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    max-width: 11in;
+    margin: auto;
+    gap: var(--gap);
+    padding: var(--gap);
+}
+
+.pageTitle {
+    font-size: 2.5em;
+}
+
+.main {
+    flex: auto;
+}
+
+.content {
+    flex: auto;
+    display: flex;
+    /* must have for scroll */
+    min-height: 0vh;
+    gap: var(--gap);
+}
+
+    .content .section {
+        display: inline;
+        max-width: 20%;
+    }
+
+.scrollable {
+    overflow-y: auto;
+}
+
+.roundedBorder {
+    border-radius: 6px;
+    border: 1px solid lightgray;
+    padding: var(--gap);
+}
+
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

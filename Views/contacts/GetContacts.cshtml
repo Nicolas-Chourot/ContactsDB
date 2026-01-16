@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Models.Contact> /* Type of data passed to this partialview */
+<!--
+    This view is intended to be called via by an action controller in this manner :
+    
+    return PartialView(IEnumerable<ContactsJSON.Models.Contact contacts);
+
+    A partial view produce html without the use of /Views/Shared/_Layout.cshtml
+
+-->
+
+@foreach (var contact in Model) /* Model is the instance passed to this view */
+{
+    <div class="contactLayout">
+        <div class="contactAvatarSmall" style="background-image:URL(@contact.Avatar" )></div>
+        <a href="/Contacts/Details/@contact.Id" title="Voir les détails de @contact.Name">@contact.Name</a>
+    </div>
+}

@@ -1,0 +1,29 @@
+﻿<!--
+    The content of this view rely on the one produced 
+    by the /Contacts/GetContacts action that call
+    Views/Contacts/GetContacts.cshtml partial view
+-->
+
+<div id="ContactListPanel" class="contactListLayout">
+    <!-- Periodicaly refreshed by object contactListPanel of class AutoRefreshedPanel -->
+</div>
+
+@section Scripts {
+    <script>
+        $(() => {
+            let contactListPanel = new AutoRefreshedPanel("ContactListPanel", "/Contacts/GetContacts", 5 /* refresh every 5 seconds */);
+            let keywordsOnchangeTimger = null;
+            $("#searchInput").on('keyup', function () {
+                clearTimeout(keywordsOnchangeTimger);
+                /* delay request by 0.5 seconds */
+                keywordsOnchangeTimger = setTimeout(() => {
+                    window.location = "/Contacts/SetSearchString?value=" + $("#searchInput").val();
+                }, 500 /* 0.5 seconds */);
+            });
+            $("#searchInput").on('search', function () { /* click on clear */
+                clearTimeout(keywordsOnchangeTimger);
+                window.location = "/Contacts/SetSearchString?value=" + $("#searchInput").val();
+            });
+        })
+    </script>
+}

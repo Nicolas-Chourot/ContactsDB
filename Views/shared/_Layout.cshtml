@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Insertion des regroupements de styles -->
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+
+    <div class="page">
+        @{
+            Html.RenderPartial("_header");
+        }
+
+        <div id="contentPanel" class="content">
+            <div id="mainContentPanel" class="main roundedBorder scrollable">
+                @RenderBody()
+            </div>
+        </div>
+
+        <div id="footerPanel" class="section roundedBorder">
+            &copy; @DateTime.Now.Year - Gestionnaire de contacts
+        </div>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <!-- Insertion des regroupements de scripts -->
+    @Scripts.Render("~/bundles/validation")
+
+    <!-- Insertion de script local aux vues -->
+    @RenderSection("scripts", required: false)
+
+ 
+</body>
+</html>

@@ -1,0 +1,15 @@
+﻿@model Models.Contact
+@{
+    ViewBag.Action = "Edit";
+    Html.RenderPartial("ContactForm");
+}
+
+@section Scripts {  <!-- Cette section ne doit pas être placée dans une vue partielle -->
+    <script>
+        $(() => {
+            // Nécessaire pour la validation des champs de formulaire
+            initFormValidation();
+            addConflictValidation("/Contacts/CheckNameConflict", 'Name' /* field unicity check */, 'submit' /* form submit button Id */);
+        })
+    </script>
+}
