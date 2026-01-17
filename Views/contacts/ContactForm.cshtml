@@ -38,13 +38,3 @@
     </div>
     <input id="submit" type="submit" value="Enregistrer" class="btn btn-primary" style="display:none">
 </form>
-
-@section Scripts {
-    <script>
-        $(() => {
-            // Nécessaire pour la validation des champs de formulaire
-            initFormValidation();
-            addConflictValidation("/Contacts/CheckNameConflict", 'Name' /* field unicity check */, 'submit' /* form submit button Id */);
-        })
-    </script>
-}
