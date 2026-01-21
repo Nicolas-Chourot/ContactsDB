@@ -9,7 +9,11 @@
         $(() => {
             // Nécessaire pour la validation des champs de formulaire
             initFormValidation();
-            addConflictValidation("/Contacts/CheckNameConflict", 'Name' /* field unicity check */, 'submit' /* form submit button Id */);
+            addConflictValidation(
+                "/Contacts/CheckNameConflict", /* url of the service provider */
+                'Name' /* field unicity check */,
+                'submit' /* form submit button Id */
+            );
         })
     </script>
 }

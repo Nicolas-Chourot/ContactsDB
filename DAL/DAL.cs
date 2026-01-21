@@ -741,6 +741,7 @@ namespace DAL
         private readonly Asset<RecordType> Asset = new Asset<RecordType>();
         
         private string _SerialNumber;
+
         public void MarkHasChanged()
         {
             _SerialNumber = Guid.NewGuid().ToString();
@@ -750,7 +751,7 @@ namespace DAL
             get
             {
                 string key = this.GetType().Name;
-                if (((string)HttpContext.Current.Session[key] != _SerialNumber))
+                if (HttpContext.Current.Session[key] != null && (string)HttpContext.Current.Session[key] != _SerialNumber)
                 {
                     HttpContext.Current.Session[key] = _SerialNumber;
                     return true;
@@ -771,7 +772,6 @@ namespace DAL
             LastUpdate = DateTime.MaxValue;
             LastCacheUpdate = DateTime.MinValue;
             SetCache(cache);
-
         }
 
         ///<summary>
