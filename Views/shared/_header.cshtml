@@ -7,7 +7,7 @@
     string currentContactName = Session["CurrentContactName"] != null ? (string)Session["CurrentContactName"] : "";
 }
 
-<div class="section roundedBorder">
+<div class="section">
     <div class="headerMenu">
         <a class="siteIcon" href="/contacts/list"></a>
         <!-- Direct action context command icons -->
@@ -15,11 +15,11 @@
         {
             case "list":
                 <div class="pageTitle">Contacts</div>
-                <div id="mainMenuPanel" class="menu">
+                <div class="menu">
                     <a href="/@controller/Create" class="cmdIcon fa fa-circle-plus" title="Ajouter..."></a>
                     <a href="/@controller/ToggleSearch" id="cmdToggleSearch" class="cmdIcon fa fa-search" title="Recherche..."></a>
                     <!-- Dropdown menu -->
-                    <div id="menu" class="dropdown ms-auto">
+                    <div class="dropdown ms-auto">
                         <!-- Menu acces icon -->
                         <div data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="cmdIcon fa fa-bars" title="Menu"></i>
@@ -51,7 +51,7 @@
                 break;
             case "details":
                 <div class="pageTitle">Détails</div>
-                <div id="mainMenuPanel" class="menu">
+                <div class="menu">
                     <a href="/@controller/Edit" class="cmdIcon fa fa-pen-to-square" title="Modifier..."></a>
                     <i class="cmdIcon fa fa-trash-can"
                        title="Effacer"
@@ -62,21 +62,21 @@
                 break;
             case "create":
                 <div class="pageTitle">Ajout</div>
-                <div id="mainMenuPanel" class="menu">
+                <div class="menu">
                     <i class="cmdIcon submitCmd fa fa-circle-check" title="Soumettre" onclick="document.getElementById('submit').click()"></i>
                     <a href="/@controller/List" class="cmdIcon fa fa-square-xmark" title="Annuler"></a>
                 </div>
                 break;
             case "edit":
                 <div class="pageTitle">Modification</div>
-                <div id="mainMenuPanel" class="menu">
+                <div class="menu">
                     <i class="cmdIcon submitCmd fa fa-circle-check" title="Soumettre" onclick="document.getElementById('submit').click()"></i>
                     <a href="/@controller/Details/@currentContactId" class="cmdIcon fa fa-square-xmark" title="Annuler"></a>
                 </div>
                 break;
             case "about":
                 <div class="pageTitle">À propos</div>
-                <div id="mainMenuPanel" class="menu">
+                <div class="menu">
                     <a href="/@controller/List" class="cmdIcon fa fa-square-xmark" title="Retour"></a>
                 </div>
                 break;
@@ -86,7 +86,7 @@
 </div>
 @if (action == "list" && search)
 {
-    <input type="search" id="searchInput" class="section roundedBorder" value="@searchString" placeholder="Recherche...">
+    <input type="search" id="searchInput" class="section" value="@searchString" placeholder="Recherche...">
 }
 
 
