@@ -13,5 +13,9 @@
     <div class="contactLayout">
         <div class="contactAvatarSmall" style="background-image:URL(@contact.Avatar" )></div>
         <a href="/Contacts/Details/@contact.Id" title="Voir les détails de @contact.Name">@contact.Name</a>
+        @if (contact._IsBirthDay)
+        {
+            <i class="fas fa-birthday-cake birthdayIcon"></i>
+        }
     </div>
 }

@@ -1,0 +1,19 @@
+.ui-widget-content {
+    margin-top: 8px;
+    width: 350px;
+    height: auto;
+    border: 1px solid blue;
+
+    select {
+        margin: 3px !important;
+        padding: 4px 2px 2px 2px; /* top right bottom left */
+        max-height: 400px;
+        border-radius: 5px;
+        border: 0.1px solid #ccc;
+    }
+
+    .ui-icon {
+        margin-top: -5px !important;
+        scale: 1.5;
+    }
+}

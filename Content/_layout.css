@@ -45,6 +45,12 @@
         padding: var(--gap);
     }
 
+    .roundedBorder {
+        border-radius: 6px;
+        border: 1px solid lightgray;
+        padding: var(--gap);
+    }
+
     .ellipsis {
         white-space: nowrap;
         overflow: hidden;

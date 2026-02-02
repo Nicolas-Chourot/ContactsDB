@@ -1,6 +1,67 @@
 ﻿@model Models.Contact
-
 <div class="detailsPanel">
+    <dl>
+        <dt>
+            Nom
+        </dt>
+
+        <dd>
+            @Model.Name
+        </dd>
+
+        <dt>
+            Ville
+        </dt>
+
+        <dd>
+            @if (Model._Town != "Inconnue")
+            {
+                <a href="https://www.google.com/maps/place/@Model._Town,+QC" target="_blank">@Model._Town</a>
+            }
+            else
+            {
+                @Model._Town
+            }
+        </dd>
+
+        <dt>
+            Téléphone
+        </dt>
+
+        <dd>
+            @Model.Phone
+        </dd>
+
+        <dt>
+            Courriel
+        </dt>
+
+        <dd>
+            <a href="mailto:@Model.Email">@Model.Email</a>
+        </dd>
+
+        <dt>
+            Date de naissance
+        </dt>
+
+        <dd>
+            @Model.Birth.ToLongDateString()
+            @if (Model._IsBirthDay)
+            {
+                <i class="fas fa-birthday-cake birthdayIcon"></i>
+            }
+        </dd>
+
+        <dt>
+            Avatar
+        </dt>
+
+        <dd>
+            <div class="contactAvatarBig" style="background-image:url(@Model.Avatar" )></div>
+        </dd>
+
+    </dl>
+</div><div class="detailsPanel">
     <dl>
         <dt>
             Nom

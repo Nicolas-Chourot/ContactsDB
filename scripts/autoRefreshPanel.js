@@ -16,30 +16,35 @@ class AutoRefreshedPanel {
         this.contentServiceURL = contentServiceURL;
         this.panelId = panelId;
         this.postRefreshCallback = postRefreshCallback;
-        this.refreshRate = refreshRate * 1000; /* convert in miliseconds */
-        this.paused = false;
-        this.refresh(true);
-        setInterval(() => { this.refresh() }, this.refreshRate);
+
+        if (refreshRate != -1) { // will be refreshed manually
+            this.refresh(true);
+            this.refreshRate = refreshRate * 1000; /* convert in miliseconds */
+            this.paused = false;
+            setInterval(() => { this.refresh() }, this.refreshRate);
+        }
     }
     pause() {
         this.paused = true;
     }
-    restart() { this.paused = false }
+    restart() {
+        this.paused = false
+    }
     replaceContent(htmlContent) {
         if (htmlContent !== "") {
             $("#" + this.panelId).html(htmlContent);
+            console.log(`Panel ${this.panelId} has been refreshed.`);
             if (this.postRefreshCallback != null) this.postRefreshCallback();
         }
     }
     refresh(forced = false) {
         if (!this.paused) {
-            console.log("Panel Refresh Rate :", this.refreshRate / 1000, " seconds");
             $.ajax({
                 url: this.contentServiceURL + (forced ? (this.contentServiceURL.indexOf("?") > -1 ? "&" : "?") + "forceRefresh=true" : ""),
                 dataType: "html",
                 success: (htmlContent) => {
                     if (htmlContent != "blocked")
-                        this.replaceContent(htmlContent)
+                        this.replaceContent(htmlContent);
                 },
                 statusCode: {
                     401: function () {

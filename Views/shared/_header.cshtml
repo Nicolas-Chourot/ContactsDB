@@ -86,7 +86,12 @@
 </div>
 @if (action == "list" && search)
 {
-    <input type="search" id="searchInput" class="section" value="@searchString" placeholder="Recherche...">
-}
+    <div class="flex">
+        <input type="search" id="searchInput" class="section roundedBorder flexItem" value="@searchString" placeholder="Recherche...">
+        <div id="TownSelectPanel" class="flexItem">
 
+        </div>
+
+    </div>
+}
 

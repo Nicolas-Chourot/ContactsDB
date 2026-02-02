@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Models.Town> /* Type of data passed to this partialview */
+<!--
+    This view is intended to be called via by an action controller in this manner :
+    
+    return PartialView(IEnumerable<ContactsJSON.Models.Contact contacts);
+
+    A partial view produce html without the use of /Views/Shared/_Layout.cshtml
+
+-->
+@{ 
+    int selectedTown = Session["CurrentselectedTown"] != null ? (int)Session["CurrentselectedTown"] : 0;
+}
+
+<select id="townSelect" class="form-control">
+    <option value="0" selected>Toutes les villes</option>
+    @foreach (var town in Model)
+    {
+        string selected = selectedTown == town.Id ? "selected" : "";
+        <option value="@town.Id" @selected>@town.Name</option>
+    }
+</select>

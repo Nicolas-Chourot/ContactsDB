@@ -9,7 +9,7 @@ namespace ContactsDB.Controllers
 {
     public class ContactsController : Controller
     {
-       
+
         private void InitSessionVariables()
         {
             // Session is a dictionary that hold keys values specific to a session
@@ -20,13 +20,38 @@ namespace ContactsDB.Controllers
             if (Session["CurrentContactName"] == null) Session["CurrentContactName"] = "";
             if (Session["Search"] == null) Session["Search"] = false;
             if (Session["SearchString"] == null) Session["SearchString"] = "";
+            if (Session["CurrentselectedTown"] == null) Session["CurrentselectedTown"] = 0;
+            if (Session["ContactsTowns"] == null) CompileContactsTownsList();
         }
+        private void CompileContactsTownsList()
+        {
+            // Compile list of contacts towns
+            List<Town> towns = (from town in DB.Towns.ToList()
+                                join contact in DB.Contacts.ToList() on town.Id equals contact.TownId
+                                select town).Distinct().ToList();
+
+            Session["ContactsTowns"] = towns.OrderBy(t => t.Id).ToList(); // Towns names are already sorted
+        }
+
         private void ResetCurrentContactInfo()
         {
             Session["CurrentContactId"] = 0;
             Session["CurrentContactName"] = "";
         }
 
+        public ActionResult GetContactsTownsList(bool forceRefresh = false)
+        {
+            InitSessionVariables();
+
+            bool search = (bool)Session["Search"];
+
+            if (search)
+            {
+                CompileContactsTownsList();
+                return PartialView((List<Town>)Session["ContactsTowns"]);
+            }
+            return null;
+        }
         // This action produce a partial view of contacts
         // It is meant to be called by an AJAX request (from client script)
         public ActionResult GetContacts(bool forceRefresh = false)
@@ -40,9 +65,14 @@ namespace ContactsDB.Controllers
                 InitSessionVariables();
                 bool search = (bool)Session["Search"];
                 string searchString = (string)Session["SearchString"];
-                
+
                 if (search)
+                {
                     result = DB.Contacts.ToList().Where(c => c.Name.ToLower().Contains(searchString)).OrderBy(c => c.Name);
+                    int currentTownId = (int)Session["CurrentselectedTown"];
+                    if (currentTownId != 0)
+                        result = result.Where(c => c.TownId == currentTownId);
+                }
                 else
                     result = DB.Contacts.ToList().OrderBy(c => c.Name);
                 return PartialView(result);
@@ -55,11 +85,17 @@ namespace ContactsDB.Controllers
             ResetCurrentContactInfo();
             return View();
         }
-        
+
         public ActionResult ToggleSearch()
         {
             if (Session["Search"] == null) Session["Search"] = false;
             Session["Search"] = !(bool)Session["Search"];
+            return RedirectToAction("List");
+        }
+        
+        public ActionResult SetSearchTown(int value)
+        {
+            Session["CurrentselectedTown"] = value;
             return RedirectToAction("List");
         }
         
@@ -86,7 +122,7 @@ namespace ContactsDB.Controllers
             }
             return RedirectToAction("List");
         }
-               public ActionResult Create()
+        public ActionResult Create()
         {
             return View(new Contact());
         }
@@ -95,7 +131,7 @@ namespace ContactsDB.Controllers
         /* Install anti forgery token verification attribute.
          * the goal is to prevent submission of data from a page 
          * that has not been produced by this application*/
-        [ValidateAntiForgeryToken()] 
+        [ValidateAntiForgeryToken()]
         public ActionResult Create(Contact contact)
         {
             DB.Contacts.Add(contact);
@@ -119,7 +155,7 @@ namespace ContactsDB.Controllers
             }
             return RedirectToAction("List");
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken()]
         public ActionResult Edit(Contact contact)

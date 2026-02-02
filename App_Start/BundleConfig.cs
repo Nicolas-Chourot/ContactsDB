@@ -16,11 +16,12 @@ namespace ContactsDB
                          "~/Scripts/image-control.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/_layout.css",
-                      "~/Content/site.css",
-                      "~/Content/menu.css",
-                      "~/Content/contacts.css",
-                      "~/Content/image-control.css"));
+                     "~/Content/_layout.css",
+                     "~/Content/site.css",
+                     "~/Content/menu.css",
+                     "~/Content/contacts.css",
+                     "~/Content/image-control.css",
+                     "~/Content/jqui-custom-datepicker.css"));
         }
     }
 }

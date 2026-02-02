@@ -15,7 +15,9 @@ namespace DAL
             
         }
         public static DataBase DataBase { get; set; }
+
         public static Contacts Contacts{ get; set; }
+        public static Towns Towns { get; set; }
 
         public static void Initialize(string DB_Path,
                                       string SQL_Journal_Path = "")
@@ -28,6 +30,7 @@ namespace DAL
 
             /* Declare tables access here */
             Contacts = new Contacts(DataBase);
+            Towns = new Towns(DataBase);
         }
     }
 

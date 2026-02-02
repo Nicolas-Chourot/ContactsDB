@@ -40,3 +40,9 @@
     max-width: 360px;
     aspect-ratio: 1/1;
 }
+
+.birthdayIcon {
+    font-size: 1.3em;
+    color: darkgoldenrod;
+}
+

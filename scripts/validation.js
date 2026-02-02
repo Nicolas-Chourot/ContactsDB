@@ -44,8 +44,9 @@ function initFormValidation() {
         $(this).mask("9999-99-99", { autoclear: false });
     });
     $(".datepicker").datepicker({
-        /*changeMonth: true,*/
-        /*changeYear: true, */
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-90:+00",
         dateFormat: "yy-mm-dd",
         monthNames: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
         monthNamesShort: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
